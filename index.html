@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Test Move Object</title>
+
+    <script type="text/javascript" src="./index.js">  </script>
+  </head>
+
+  <body onload="docReady()" onkeydown="" onkeyup="">
+  {# <img id="image1" src="image/giphy.gif" style="position:absolute;left:0; top:0;" height="30" width="30"> #}
+  <button class="btn btn-default" onclick="vibrateSimple()">Vibrate for 200 ms</button>
+  <button class="btn btn-default" onclick="vibratePattern()">Vibrate with pattern</button>
+<input type="text" onkeyup="changeHistory(event,this.value).then(res => console.log(res))">
+  <script>
+      function changeHistory(e,val){
+        // alert(e);
+      history.pushState({foo:"bar"},"page 3",val+".html");
+    }
+      function vibrateSimple() {
+        navigator.vibrate(200);
+      }
+      
+      function vibratePattern() {
+        navigator.vibrate([900, 200, 800, 500, 500]);
+      }
+  </script>
+  
+
+</body>
+ 
+</html>

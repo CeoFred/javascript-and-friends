@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Working with files</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+</head>
+<body>
+        <input type='file' accept='image/*' onchange='openFile(event)'><br>
+<img id='output'>
+
+<form action="" method="post" id="form" onsubmit="checkFormInput(event)">
+  <input type="text" name="name" id="name">
+  <button type="submit">Submit</button>
+</form>
+<script>
+
+let fruits = [
+  { id: 1, name: 'Banana',createdBy:'Fred' },
+  { id: 2, name: 'Udara', createdBy:'Donald' },
+  { id: 3, name: 'Mango', createdBy:'Leo' },
+  { id: 4, name: 'Apple',createdBy:'Pro' }
+];
+let whoCreatedTheFruit = fruits.map(eachFruitObject => { 
+  return eachFruitObject.createdBy
+});
+const reducer = (accumulator, currentValue) => {
+ return  accumulator.concat(' ', currentValue);
+} 
+console.log(whoCreatedTheFruit.filter((creators) => {
+ return creators === 'Fred' || creators === 'Donald'}).reduce(reducer,'The Creators are'));
+
+var list = ['apple','egg','plantain'];
+var item = list.map(item => item[0]);
+var apple = 'apple';
+
+console.log(item,item[2],apple[0]);
+
+  var openFile = function(event) {
+    var input = event.target;
+    var reader = new FileReader();
+    console.log(reader)
+
+    reader.onload = function(){
+      var dataURL = reader.result;
+      console.log(dataURL)
+      var output = document.getElementById('output');
+      output.src = dataURL;
+    };
+    
+    reader.readAsDataURL(input.files[0]);
+  };
+</script>
+
+</body>
+</html>

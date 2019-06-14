@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sender</title>
+</head>
+<body>
+    
+
+    <div>
+        <input id="message" type="text" placeholder="Send Message">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/0.3.16/peer.min.js"></script>
+    <script>
+
+      function sendMessage(){
+
+       let message  = document.getElementById('message').value;
+    var peer = new Peer('senderID'); 
+    var conn = peer.connect('ceofred12345');
+    conn.on('open', function(id){
+  // here you have conn.id
+  conn.send(`${message}`);
+    });
+    conn.on('data',(data) => {
+    console.log(data);
+});
+}
+    </script>
+</body>
+</html>
